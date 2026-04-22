@@ -1,0 +1,50 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+.env.*
+
+#  Playwright
+playwright-report/
+test-results/
+blob-report/
+trace.zip
+
+#  Screenshots / videos (test artifacts)
+screenshots/
+videos/
+*.png
+*.webm
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+dist/
+build/
+*.tsbuildinfo
+
+# Coverage
+coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+#  Optional: auth state (if using storageState)
+auth.json
+
+# Optional: temporary files
+tmp/
+temp/
