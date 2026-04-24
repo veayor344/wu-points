@@ -10,7 +10,8 @@ test.describe('View Detail - Add Point Scenarios', () => {
         await viewDetailAddPoint.goToPointManagement();
         await viewDetailAddPoint.openViewCustomerPoints();
         await viewDetailAddPoint.viewDetailCustomer();
-        await viewDetailAddPoint.openPointAction('Add Points');
+        await viewDetailAddPoint.openAddPoints();
+        //await viewDetailAddPoint.openPointAction('Add Points');
         await viewDetailAddPoint.fillPointForm({
             amount: '1000',
             xref: 'Test XREF',
@@ -27,12 +28,13 @@ test.describe('View Detail - Add Point Scenarios', () => {
         await viewDetailAddPoint.goToPointManagement();
         await viewDetailAddPoint.openViewCustomerPoints();
         await viewDetailAddPoint.viewDetailCustomer();
-        await viewDetailAddPoint.openPointAction('Redemption');
+        await viewDetailAddPoint.openAddPoints();
+        //await viewDetailAddPoint.openPointAction('Redemption');
 
         await viewDetailAddPoint.fillPointForm({
         pointType: 'Redemption',
-        amount: '',
-        xref: `XREF-${Date.now()}`,
+        Redemption: 'Phone Card (17 points)',
+        xref: 'Test XREF',
         description: 'Redemption test'
         });
 
@@ -47,12 +49,13 @@ test.describe('View Detail - Add Point Scenarios', () => {
         await viewDetailAddPoint.goToPointManagement();
         await viewDetailAddPoint.openViewCustomerPoints();
         await viewDetailAddPoint.viewDetailCustomer();
-        await viewDetailAddPoint.openPointAction('Modify');
+        await viewDetailAddPoint.openAddPoints();
+        //await viewDetailAddPoint.openPointAction('Modify');
 
         await viewDetailAddPoint.fillPointForm({
-        pointType: 'Modify',
+        pointType: 'Modify Points',
         amount: '1',
-        xref: `XREF-${Date.now()}`,
+        xref: 'Test XREF',
         description: 'Modify test'
         });
 
@@ -60,3 +63,6 @@ test.describe('View Detail - Add Point Scenarios', () => {
         await viewDetailAddPoint.clickDone();
     });
 });
+
+
+

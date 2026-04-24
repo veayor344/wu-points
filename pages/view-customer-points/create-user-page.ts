@@ -28,25 +28,11 @@ export class PointPage {
     await this.page.locator('input[name="idNumber"]').fill(idNumber);
   }
 
-  async openViewUser() {
-    await this.page.getByRole('button', { name: 'View User' }).click();
-  }
-
-  async openAddPoint() {
-    await this.page.getByRole('button', { name: 'Add Points' }).click();
-  }
-
-  async fillPointForm(point: any) {
-    await this.page.locator('input[name="amount"]').fill(point.amount);
-    await this.page.locator('input[name="xref"]').fill(point.xref);
-    await this.page.locator('input[name="description"]').fill(point.description);
-  }
-
-  async submitPoint() {
-    await this.page.getByRole('button', { name: 'Submit' }).click();
-  }
-
   async clickDone() {
     await this.page.getByRole('button', { name: 'Done' }).click();
+  }
+
+  async clickCancel() {
+    await this.page.getByRole('button', { name: 'Cancel' }).click();
   }
 }

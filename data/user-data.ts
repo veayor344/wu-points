@@ -4,10 +4,21 @@ export const userMock = {
     lastName: 'Tita',
     phoneNumber: '0123',
     idNumber: '1234567890',
-    cifId: '0987654321',
+    cifId: '09876543210',
   },
   invalidUser: {
-    idNumber: '1234567',
+    firstName: 'NAVA',
+    lastName: 'NAVA',
+    phoneNumber: '0123',
+    idNumber: 'ABAC',
+    cifId: 'ABC',
+  },
+  EmptyFields: {
+    firstName: 'Tita',
+    lastName: 'Tita',
+    phoneNumber: '',
+    idNumber: '',
+    cifId: '',
   },
 };
 
