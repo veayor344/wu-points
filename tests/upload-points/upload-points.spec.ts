@@ -1,19 +1,72 @@
 import { test } from '../../fixtures/base-test';
 import { BulkUploadPage } from '../../pages/bulk-upload-points/bulk-upload-points-page';
-import { bulkUploadMock } from '../../data/user-data';
+import { bulkUploadPointsMock } from '../../data/user-data';
 
-test('Bulk Upload Points - success flow', async ({ loggedInPage }) => {
-  const page = loggedInPage;
-  const bulkPage = new BulkUploadPage(page);
+test.describe('Bulk Upload Points', () => {
 
-  await bulkPage.navigate();
+  // Bulk Upload Points Valid
+  test('Bulk Upload Points valid ', async ({ loggedInPage }) => {
+    const page = loggedInPage;
+    const bulkPage = new BulkUploadPage(page);
+    // Navigate and perform bulk upload
+    await bulkPage.navigate();
+    await bulkPage.selectProgram(bulkUploadPointsMock.ValidUploadPoints.program);
+    await bulkPage.selectBranch(bulkUploadPointsMock.ValidUploadPoints.branch);
+    await bulkPage.uploadFile(bulkUploadPointsMock.ValidUploadPoints.file);
+    await bulkPage.clickUpload();
+    await bulkPage.clickCancel();
+  });
 
-  await bulkPage.selectProgram(bulkUploadMock.program);
-  await bulkPage.selectBranch(bulkUploadMock.branch);
+  // Bulk Upload Points Missing Fields
+  test('Bulk Upload Points Missing Fields', async ({ loggedInPage }) => {
+    const page = loggedInPage;
+    const bulkPage = new BulkUploadPage(page);
+    // Navigate and perform bulk upload with missing fields
+    await bulkPage.navigate();
+    await bulkPage.selectProgram(bulkUploadPointsMock.MissingFieldsUploadPoints.program);
+    await bulkPage.selectBranch(bulkUploadPointsMock.MissingFieldsUploadPoints.branch);
+    await bulkPage.uploadFile(bulkUploadPointsMock.MissingFieldsUploadPoints.file);
+    // await bulkPage.clickUpload();
+    // await bulkPage.clickCancel();
+    });
+  
+  // Bulk Upload Points Invalid File
+  test('Bulk Upload Points Invalid File', async ({ loggedInPage }) => {
+    const page = loggedInPage;
+    const bulkPage = new BulkUploadPage(page);
+    // Navigate and perform bulk upload with invalid file
+    await bulkPage.navigate();
+    await bulkPage.selectProgram(bulkUploadPointsMock.InvalidFileUploadPoints.program);
+    await bulkPage.selectBranch(bulkUploadPointsMock.InvalidFileUploadPoints.branch);
+    await bulkPage.uploadFile(bulkUploadPointsMock.InvalidFileUploadPoints.file);
+    // await bulkPage.clickUpload();
+    // await bulkPage.clickCancel();
+   });
 
-  await bulkPage.uploadFile(bulkUploadMock.file);
+  // maximum row limit exceeded
+  test('Bulk Upload Points Maximum Row Limit Exceeded', async ({ loggedInPage }) => {
+    const page = loggedInPage;
+    const bulkPage = new BulkUploadPage(page);
+    // Navigate and perform bulk upload with file exceeding maximum row limit
+    await bulkPage.navigate();
+    await bulkPage.selectProgram(bulkUploadPointsMock.ValidUploadPoints.program);
+    await bulkPage.selectBranch(bulkUploadPointsMock.ValidUploadPoints.branch);
+    await bulkPage.uploadFile(bulkUploadPointsMock.MaximumRowLimitExceededPoints.file);
+    // await bulkPage.clickUpload();
+    // await bulkPage.clickCancel();
+  });  
 
-  await bulkPage.clickUpload();
+  // upload points 100 rows
+  test('Bulk Upload Points 100 Rows', async ({ loggedInPage }) => {
+    const page = loggedInPage;
+    const bulkPage = new BulkUploadPage(page);
+    // Navigate and perform bulk upload with 100 rows
+    await bulkPage.navigate();
+    await bulkPage.selectProgram(bulkUploadPointsMock.UploadPoints100Rows.program);
+    await bulkPage.selectBranch(bulkUploadPointsMock.UploadPoints100Rows.branch);
+    await bulkPage.uploadFile(bulkUploadPointsMock.UploadPoints100Rows.file);
+    await bulkPage.clickUpload();
+    await bulkPage.clickCancel();
+  });
 
-  await bulkPage.clickCancel();
 });

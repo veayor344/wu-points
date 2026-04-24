@@ -1,32 +1,3 @@
-// import { Page } from '@playwright/test';
-
-// export class BulkUploadPage {
-//   constructor(private page: Page) {}
-
-//   async navigate() {
-//     await this.page.getByRole('button', { name: 'Point Management' }).click();
-//     await this.page.getByRole('button', { name: "View Customer's Points" }).click();
-//     await this.page.getByRole('button', { name: 'Bulk Upload' }).click();
-//   }
-
-//   async uploadFile(filePath: string) {
-//     await this.page.setInputFiles('input[type="file"]', filePath);
-//   }
-
-//   async submit() {
-//     await this.page.getByRole('button', { name: 'Upload' }).click();
-//   }
-
-//   async getSuccessMessage() {
-//     return this.page.locator('text=Upload Successful');
-//   }
-
-//   async getErrorMessage() {
-//     return this.page.locator('.error-message');
-//   }
-// }
-
-
 import { Page } from '@playwright/test';
 
 export class BulkUploadPage {

@@ -14,7 +14,7 @@ export class BulkUserUploadPage {
   }
 
   async uploadFile(filePath: string) {
-    // ✅ correct way (not button)
+    // correct way (not button)
     await this.page.setInputFiles('input[type="file"]', filePath);
   }
 
