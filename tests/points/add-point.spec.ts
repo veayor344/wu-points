@@ -4,7 +4,7 @@ import { ViewDetailAddPoint } from '../../pages/view-customer-points/view-detail
 test.describe('View Detail - Add Point Scenarios', () => {
 
     //Add Point to existing user
-    test('View Detail Add Point', async ({loggedInPage}) => {
+    test('View Detail Add Point', async ({ loggedInPage }) => {
         const page = loggedInPage;
         const viewDetailAddPoint = new ViewDetailAddPoint(page);
         await viewDetailAddPoint.goToPointManagement();
@@ -12,9 +12,9 @@ test.describe('View Detail - Add Point Scenarios', () => {
         await viewDetailAddPoint.viewDetailCustomer();
         await viewDetailAddPoint.openAddPoints();
         //await viewDetailAddPoint.openPointAction('Add Points');
-        await viewDetailAddPoint.fillPointForm({
-            amount: '1000',
-            xref: 'Test XREF',
+        await viewDetailAddPoint.AddfillPointForm({
+            amount: '7000',
+            xref: `XREF-${Date.now()}`,
             description: 'Test Description'
         });
         await viewDetailAddPoint.submitPoint();
@@ -29,13 +29,12 @@ test.describe('View Detail - Add Point Scenarios', () => {
         await viewDetailAddPoint.openViewCustomerPoints();
         await viewDetailAddPoint.viewDetailCustomer();
         await viewDetailAddPoint.openAddPoints();
-        //await viewDetailAddPoint.openPointAction('Redemption');
 
-        await viewDetailAddPoint.fillPointForm({
-        pointType: 'Redemption',
-        Redemption: 'Phone Card (17 points)',
-        xref: 'Test XREF',
-        description: 'Redemption test'
+        await viewDetailAddPoint.RedemptionfillPointForm({
+            pointType: 'Redemption',
+            gift: 'Phone Card (17 points)',
+            xref: `XREF-${Date.now()}`,
+            description: 'Redemption test'
         });
 
         await viewDetailAddPoint.submitPoint();
@@ -52,17 +51,14 @@ test.describe('View Detail - Add Point Scenarios', () => {
         await viewDetailAddPoint.openAddPoints();
         //await viewDetailAddPoint.openPointAction('Modify');
 
-        await viewDetailAddPoint.fillPointForm({
-        pointType: 'Modify Points',
-        amount: '1',
-        xref: 'Test XREF',
-        description: 'Modify test'
+        await viewDetailAddPoint.ModifyfillPointForm({
+            pointType: 'Modify',
+            amount: '1',
+            xref: `XREF-${Date.now()}`,
+            description: 'Modify test'
         });
 
         await viewDetailAddPoint.submitPoint();
         await viewDetailAddPoint.clickDone();
     });
 });
-
-
-
