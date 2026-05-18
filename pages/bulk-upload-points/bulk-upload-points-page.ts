@@ -26,6 +26,10 @@ export class BulkUploadPage {
     await this.page.getByRole('button', { name: 'Upload', exact: true }).click();
   }
 
+  async clickConfirm() {
+    await this.page.getByRole('button', { name: 'Confirm' }).click();
+  }
+
   async clickCancel() {
     await this.page.getByRole('button', { name: 'Cancel' }).click();
   }

@@ -48,6 +48,11 @@ export const bulkUploadPointsMock = {
     branch: 'Head Office (010)',
     file: 'data/bulk-upload-points/upload-points-exceeds-rows.xlsx',
   },
+  DuplicateEntriesUploadPoints: {
+    program: 'Western Union Loyalty Program',
+    branch: 'Head Office (010)',
+    file: 'data/bulk-upload-points/upload-points-duplicate-trx.xlsx',
+  },
 };
 
 export const bulkUploadUserMock = {

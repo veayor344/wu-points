@@ -14,7 +14,9 @@ test.describe('Bulk Upload Points', () => {
     await bulkPage.selectBranch(bulkUploadPointsMock.ValidUploadPoints.branch);
     await bulkPage.uploadFile(bulkUploadPointsMock.ValidUploadPoints.file);
     await bulkPage.clickUpload();
-    await bulkPage.clickCancel();
+    await bulkPage.clickConfirm();
+    //await bulkPage.clickCancel();
+
   });
 
   // Bulk Upload Points Missing Fields
@@ -65,6 +67,19 @@ test.describe('Bulk Upload Points', () => {
     await bulkPage.selectProgram(bulkUploadPointsMock.UploadPoints100Rows.program);
     await bulkPage.selectBranch(bulkUploadPointsMock.UploadPoints100Rows.branch);
     await bulkPage.uploadFile(bulkUploadPointsMock.UploadPoints100Rows.file);
+    await bulkPage.clickUpload();
+    await bulkPage.clickCancel();
+  });
+
+  //upload points duplicate entries
+  test('Bulk Upload Points Duplicate Entries', async ({ loggedInPage }) => {
+    const page = loggedInPage;
+    const bulkPage = new BulkUploadPage(page);
+    // Navigate and perform bulk upload with duplicate entries
+    await bulkPage.navigate();
+    await bulkPage.selectProgram(bulkUploadPointsMock.DuplicateEntriesUploadPoints.program);
+    await bulkPage.selectBranch(bulkUploadPointsMock.DuplicateEntriesUploadPoints.branch);
+    await bulkPage.uploadFile(bulkUploadPointsMock.DuplicateEntriesUploadPoints.file);
     await bulkPage.clickUpload();
     await bulkPage.clickCancel();
   });

@@ -12,7 +12,24 @@ export class ViewDetailAddPoint {
     }
 
     async viewDetailCustomer() {
-        await this.page.getByText('W-2604-030').click();
+        //await this.page.getByText('W-2604-030').click();
+
+        await this.page.waitForLoadState('networkidle');
+
+        for (let i = 0; i < 10; i++) {
+
+            const customer = this.page.locator('text=W-2604-030');
+
+            if (await customer.count() > 0) {
+                await customer.scrollIntoViewIfNeeded();
+                await customer.click();
+                break;
+            }
+
+            // scroll down table/page
+            await this.page.mouse.wheel(0, 1000);
+            await this.page.waitForTimeout(1000);
+        }
     }
 
     async openAddPoints() {
@@ -26,7 +43,7 @@ export class ViewDetailAddPoint {
         await this.page.locator('input[name="amount"]').fill(point.amount);
         await this.page.locator('input[name="xref"]').fill(point.xref);
         await this.page.locator('input[name="description"]').fill(point.description);
-        }
+    }
 
     // For Redemption scenario
     async RedemptionfillPointForm(point: any) {
@@ -39,22 +56,21 @@ export class ViewDetailAddPoint {
                 .first()
                 .click();
         }
-        // Redemption → select gift
-        if (point.pointType === 'Redemption') {
-            await this.page.getByRole('combobox', { name: 'Select Gift' }).click();
+        // Select Gift
+        await this.page.getByRole('combobox', {
+            name: 'Select Gift'
+        }).click();
 
-            await this.page
-                .locator('li, div')
-                .filter({ hasText: point.gift })
-                .first()
-                .click();
-        }
+        await this.page.getByRole('option', {
+            name: point.gift,
+            exact: true
+        }).click();
         // Step 3: Common fields
         await this.page.locator('input[name="xref"]').fill(point.xref);
         await this.page.locator('input[name="description"]').fill(point.description);
     }
 
-    // For Redemption scenario
+    // For Modify scenario
     async ModifyfillPointForm(point: any) {
         // Modify Points
         if (point.pointType === 'Modify') {
@@ -68,7 +84,7 @@ export class ViewDetailAddPoint {
         }
         // Common fields
         await this.page.waitForTimeout(1000);
-        await this.page.locator('input[name="points"]').fill(point.amount); 
+        await this.page.locator('input[name="points"]').fill(point.amount);
         await this.page.locator('input[name="xref"]').fill(point.xref);
         await this.page.locator('input[name="description"]').fill(point.description);
     }
